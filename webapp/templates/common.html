@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css">
+  <script src="{{ url_for('static', filename='javascript/script.js') }}"></script>
+  <title>スマホアプリプロトタイプ</title>
+</head>
+
+<body>
+  <nav class="container-head">
+    <div>
+      <li><strong>アプリ名</strong></li>
+    </div>
+    <div class="button-group">
+      <!-- スイッチボタンの追加 -->
+      <div class="switch-container flex">
+        <button onclick="window.location.href = '/'">入力</button>
+        <button onclick="window.location.href = '/data-list'">一覧</button>
+        <button onclick="window.location.href = '/data-list'">学習</button>
+      </div>
+    </div>
+  </nav>
+  {% block content %}{% endblock%}
+  <footer class="container">
+    <small><a href="#">利用規約</a> • <a href="#">プライバシーポリシー</a></small>
+  </footer>
+</body>
+
+</html>

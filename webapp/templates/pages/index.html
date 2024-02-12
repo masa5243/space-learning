@@ -1,0 +1,56 @@
+{% extends "common.html" %}
+
+{% block content %}
+<section class="container input-page">
+  <div class="grid  input-container">
+    <div class="margin">
+      <form id="learning-data" action="/submit_data" method="post">
+        <div class="flex">
+          <h4>入力フォーム</h4>
+          <div class="input-box date-box">
+            <label for="date">学習日</label>
+            <input type="date" id="date" name="date" required>
+          </div>
+        </div>
+        <div class="input-box">
+          <label for="title">タイトル</label>
+          <input type="text" id="title" name="title">
+        </div>
+        <div class="input-box">
+          <label for="range">範囲</label>
+          <input type="text" id="range" name="range">
+        </div>
+        <div class="input-box">
+          <label for="text">テキスト</label>
+          <textarea class="long-text-box" id="text" name="text" required></textarea>
+        </div>
+        <div class="button-group">
+          <button class="audio-button" onclick="event.preventDefault()">録音</button>
+          <button class="picture-button" onclick="event.preventDefault()">写真</button>
+        </div>
+        <div id="quizForm">
+          <div class="quiz-entry">
+            <div>
+              <label for="quiz">問題文</label>
+              <input type="text" class="quiz" name="quiz[]">
+            </div>
+            <div class="answer-box">
+              <label for="answer">答え</label>
+              <input type="text" class="answer" name="answer[]">
+            </div>
+            <div>
+              <button class="quiz-delete" onclick="deleteRow(this)">削除</button>
+            </div>
+          </div>
+          <div>
+            <button type="button" class="quiz-create" onclick="addRow()">作成</button>
+          </div>
+        </div>
+        <div class="button-group">
+          <input type="submit" id="control-button" value="決定">
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+{% endblock %}

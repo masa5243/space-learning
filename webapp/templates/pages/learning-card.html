@@ -1,0 +1,23 @@
+{% extends "common.html" %}
+
+{% block content %}
+<section class="learning-page">
+  <div class="margin">
+    {% for past_submission in past_submissions %}
+    <div class="review-card">
+      <div class="review-content">
+        <h3>{{ past_submission.title }}</h3>
+        <h5>範囲: {{ past_submission.range_value }}</h5>
+        <p>{{ past_submission.text }}</p>
+        {% for quiz in past_submission.quizzes %}
+        <div>
+          <p>クイズ: {{ quiz.quiz }}</p>
+          <p>答え: {{ quiz.answer }}</p>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</section> 
+{% endblock %}

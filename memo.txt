@@ -1,0 +1,48 @@
+document.addEventListener('DOMContentLoaded', function() {
+    let mediaRecorder;
+    let audioChunks = [];
+    let isRecording = false;
+
+    const recordButton = document.getElementById("recordButton");
+    const audioPlayback = document.getElementById("audioPlayback");
+
+    // ユーザーのデバイスからオーディオ入力を取得する
+    navigator.mediaDevices.getUserMedia({ audio: true })
+        .then(stream => {
+            mediaRecorder = new MediaRecorder(stream);
+            mediaRecorder.ondataavailable = event => {
+                audioChunks.push(event.data);
+            };
+
+            mediaRecorder.onstop = () => {
+                const audioBlob = new Blob(audioChunks, { type: 'audio/wav' });
+                const audioUrl = URL.createObjectURL(audioBlob);
+                audioPlayback.src = audioUrl;
+                audioChunks = [];
+            };
+
+            recordButton.addEventListener("click", () => {
+                if (isRecording) {
+                    // 録音を停止
+                    mediaRecorder.stop();
+                    recordButton.textContent = "録音開始";
+                } else {
+                    // 録音を開始
+                    mediaRecorder.start();
+                    recordButton.textContent = "停止";
+                    audioChunks = [];
+                }
+                isRecording = !isRecording;
+            });
+        })
+        .catch(error => {
+            console.log(error);
+        });
+});
+
+
+
+    
+
+
+
